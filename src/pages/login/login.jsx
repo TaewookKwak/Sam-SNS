@@ -42,6 +42,7 @@ function Login() {
             placeholder="Email address"
             className={styles.inputEmail}
             onChange={({ target }) => setEmailAddress(target.value)}
+            value={emailAddress}
           />
           <input
             type="password"
@@ -49,6 +50,7 @@ function Login() {
             placeholder="Password"
             className={styles.inputPassword}
             onChange={({ target }) => setPassword(target.value)}
+            value={password}
           />
           <button
             disabled={isInvalid}
@@ -60,7 +62,7 @@ function Login() {
         </form>
       </div>
       <div>
-        <span>Don't have an account?</span>
+        <span>Don't have an account? </span>
         <Link to="/signup">
           <span>Sign Up</span>
         </Link>

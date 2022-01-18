@@ -3,26 +3,51 @@ import FirebaseContext from '../../context/firebase'
 import { Link, useHistory } from 'react-router-dom'
 import styles from './signup.module.css'
 import * as ROUTES from '../../constants/routes'
+import { doesUserNameExist } from '../../services/firebase'
 function SignUp() {
   const [userName, setUserName] = useState('')
   const [fullName, setFullName] = useState('')
   const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const isInvalid = password === '' || emailAddress === ''
+  const isInvalid =
+    password === '' || emailAddress === '' || userName === '' || fullName === ''
   const history = useHistory()
 
   const { firebase } = useContext(FirebaseContext)
 
   const handleSignup = async (e) => {
     e.preventDefault()
-    try {
-      await firebase.auth().signUpWithEmailAndPassword(emailAddress, password)
-      history.push(ROUTES.DASHBOARD)
-    } catch (error) {
-      setEmailAddress('')
-      setPassword('')
-      setError(error.message)
+    const userNameExists = await doesUserNameExist(userName)
+    if (!userNameExists) {
+      try {
+        const createdUserResult = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(emailAddress, password)
+
+        await createdUserResult.user.updateProfile({
+          displayName: userName,
+        })
+
+        await firebase.firestore().collection('users').add({
+          userId: createdUserResult.user.uid,
+          username: userName.toLowerCase(),
+          fullName: fullName.toLowerCase(),
+          emailAddress: emailAddress.toLowerCase(),
+          following: [],
+          dataCreated: Date.now(),
+        })
+
+        history.push(ROUTES.DASHBOARD)
+      } catch (error) {
+        setUserName('')
+        setEmailAddress('')
+        setPassword('')
+        setFullName('')
+        setError(error.message)
+      }
+    } else {
+      setError('That username is already taken, please try another')
     }
   }
 
@@ -42,6 +67,7 @@ function SignUp() {
             placeholder="Email address"
             className={styles.inputEmail}
             onChange={({ target }) => setEmailAddress(target.value)}
+            value={emailAddress}
           />
           <input
             type="text"
@@ -49,6 +75,7 @@ function SignUp() {
             placeholder="Full name"
             className={styles.inputFullName}
             onChange={({ target }) => setFullName(target.value)}
+            value={fullName}
           />
           <input
             type="text"
@@ -56,6 +83,7 @@ function SignUp() {
             placeholder="User name"
             className={styles.inputUserName}
             onChange={({ target }) => setUserName(target.value)}
+            value={userName}
           />
           <input
             type="password"
@@ -63,6 +91,7 @@ function SignUp() {
             placeholder="Password"
             className={styles.inputPassword}
             onChange={({ target }) => setPassword(target.value)}
+            value={password}
           />
           <button
             disabled={isInvalid}

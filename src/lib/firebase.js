@@ -1,4 +1,3 @@
-import { FirebaseError } from '@firebase/util'
 import Firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
