@@ -1,0 +1,11 @@
+.p {
+  font-size: larger;
+}
+
+.btnSubmit {
+  background-color: rgb(97, 97, 226);
+  color: white;
+}
+.btnSubmit.opacity {
+  opacity: 50%;
+}
