@@ -11,7 +11,7 @@ function useUser(props) {
     async function getUserObjByUserId() {
       const [response] = await getUserFromFirebaseByUserId(user.uid)
       setActiveUser(response)
-      console.log('response in useUser', response)
+      //   console.log('response in useUser', response)
     }
     if (user?.uid) {
       getUserObjByUserId()

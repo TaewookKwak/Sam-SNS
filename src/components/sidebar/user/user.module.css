@@ -1,0 +1,15 @@
+.avatar {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+
+.skeleton:first-of-type {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+
+.skeleton:last-of-type {
+  width: 5em;
+}

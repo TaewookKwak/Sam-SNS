@@ -5,15 +5,22 @@ import styles from './sidebar.module.css'
 import User from './user/user'
 const Sidebar = () => {
   const {
-    user: { fullName, username, userId },
+    user: { docId, fullName, username, userId, following },
   } = useUser()
-  console.log('user in sidebar', fullName, username, userId)
+  // console.log('user in sidebar', fullName, username, userId)
   return (
     <div>
-      <User fullName={fullName} username={username} userId={userId} />
-      <Suggestions fullName={fullName} username={username} userId={userId} />
+      <User fullName={fullName} username={username} />
+      <Suggestions
+        userId={userId}
+        username={username}
+        following={following}
+        loggedInUserDocId={docId}
+      />
     </div>
   )
 }
 
 export default Sidebar
+
+Sidebar.whyDidYouRender = true
