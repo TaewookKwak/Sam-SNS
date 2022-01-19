@@ -28,46 +28,56 @@ function Login() {
     document.title = 'Login - Sam SNS'
   }, [])
   return (
-    <div>
-      <div>
-        <h1>Sam's SNS</h1>
-        <h2>Sign up to see photos and videos from your friends.</h2>
-        <button>Log in with Google</button>
-        <h2>OR</h2>
-        {error && <p className={styles.error}>{error}</p>}
-        <form onSubmit={handleLogin} method="post">
-          <input
-            type="text"
-            aria-label="Enter your email address"
-            placeholder="Email address"
-            className={styles.inputEmail}
-            onChange={({ target }) => setEmailAddress(target.value)}
-            value={emailAddress}
-          />
-          <input
-            type="password"
-            aria-label="Enter your password"
-            placeholder="Password"
-            className={styles.inputPassword}
-            onChange={({ target }) => setPassword(target.value)}
-            value={password}
-          />
-          <button
-            disabled={isInvalid}
-            type="submit"
-            className={`${styles.btnSubmit} ${isInvalid && styles.opacity}`}
-          >
-            Log In
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.login}>
+          <h1 className={styles.h1}>Sam's SNS</h1>
+          <h2 className={styles.h2}>
+            Sign up to see photos and videos from your friends.
+          </h2>
+          <button className={styles.btnLogInWithGoogle}>
+            Log in with Google
           </button>
-        </form>
+          <div className={styles.lineUnit}>
+            <hr className={styles.line} />
+            <span className={styles.h2}>OR</span>
+            <hr className={styles.line} />
+          </div>
+          {error && <p className={styles.error}>{error}</p>}
+          <form onSubmit={handleLogin} method="post">
+            <input
+              type="text"
+              aria-label="Enter your email address"
+              placeholder="Email address"
+              className={styles.inputEmail}
+              onChange={({ target }) => setEmailAddress(target.value)}
+              value={emailAddress}
+            />
+            <input
+              type="password"
+              aria-label="Enter your password"
+              placeholder="Password"
+              className={styles.inputPassword}
+              onChange={({ target }) => setPassword(target.value)}
+              value={password}
+            />
+            <button
+              disabled={isInvalid}
+              type="submit"
+              className={`${styles.btnLogIn} ${isInvalid && styles.opacity}`}
+            >
+              Log In
+            </button>
+          </form>
+        </div>
+        <div className={styles.signup}>
+          <span className={styles.firstPara}>Don't have an account? </span>
+          <Link to="/signup">
+            <span className={styles.btnSignUp}>Sign Up</span>
+          </Link>
+        </div>
       </div>
-      <div>
-        <span>Don't have an account? </span>
-        <Link to="/signup">
-          <span>Sign Up</span>
-        </Link>
-      </div>
-    </div>
+    </main>
   )
 }
 

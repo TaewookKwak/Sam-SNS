@@ -1,5 +1,6 @@
 import Firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
+import { getAuth, updateProfile } from 'firebase/auth'
 import 'firebase/compat/firestore'
 
 // import { seedDatabase } from '../seed'
@@ -18,4 +19,4 @@ const { FieldValue } = Firebase.firestore
 // seedDatabase(firebase)
 console.log(firebase, FieldValue)
 
-export { firebase, FieldValue }
+export { firebase, FieldValue, updateProfile, getAuth }
