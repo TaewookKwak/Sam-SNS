@@ -2,3 +2,8 @@
   box-sizing: border-box;
   font-family: 'Frank Ruhl Libre', serif;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}

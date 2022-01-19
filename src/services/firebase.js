@@ -6,7 +6,6 @@ export async function doesUserNameExist(username) {
     .collection('users')
     .where('username', '==', username)
     .get()
-  console.log(result)
 
   const isUserExisted = result.docs.length > 0
   console.log('isUserExisted', isUserExisted)
