@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import useProfile from '../../../hooks/useProfile'
 import SuggestedProfiles from './suggestedProfiles'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'

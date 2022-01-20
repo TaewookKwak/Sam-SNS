@@ -1,0 +1,7 @@
+.heart.fill {
+  color: red;
+}
+
+.heart.empty {
+  color: rgb(161, 161, 170);
+}
