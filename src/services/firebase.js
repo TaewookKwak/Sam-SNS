@@ -53,21 +53,26 @@ export async function getAllPhotosFromFirebase() {
 export async function updateLoggedInUserFollowingFromFirebase(
   profileId,
   loggedInUserDocId,
+  isFollowingProfile,
 ) {
   await firebase
     .firestore()
     .collection('users')
     .doc(loggedInUserDocId)
-    .update({ following: FieldValue.arrayUnion(profileId) })
+    .update({
+      following: isFollowingProfile
+        ? FieldValue.arrayRemove(profileId)
+        : FieldValue.arrayUnion(profileId),
+    })
 }
 
 export async function updateFollowingProfileFollowedUserFromFirebase(
-  suggestedProfileDocId,
-  userId,
+  profileDocId,
+  loggedInUserDocId,
 ) {
   await firebase
     .firestore()
     .collection('users')
-    .doc(suggestedProfileDocId)
-    .update({ followers: FieldValue.arrayUnion(userId) })
+    .doc(profileDocId)
+    .update({ followers: FieldValue.arrayUnion(loggedInUserDocId) })
 }

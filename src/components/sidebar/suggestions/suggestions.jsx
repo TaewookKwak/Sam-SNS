@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useProfile from '../../../hooks/useProfile'
-import Others from './others'
+import SuggestedProfiles from './suggestedProfiles'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
 import { getAllUsersFromFirebase } from '../../../services/firebase'
@@ -26,11 +26,11 @@ const Suggestions = ({ userId, following, loggedInUserDocId }) => {
         {profiles.map((profile) => {
           return (
             <li key={profile.docId}>
-              <Others
+              <SuggestedProfiles
                 username={profile.username}
                 userId={userId}
                 profileId={profile.userId}
-                suggestedProfileDocId={profile.docId}
+                profileDocId={profile.docId}
                 loggedInUserDocId={loggedInUserDocId}
               />
             </li>

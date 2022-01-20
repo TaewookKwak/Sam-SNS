@@ -5,20 +5,21 @@ import {
   updateFollowingProfileFollowedUserFromFirebase,
   updateLoggedInUserFollowingFromFirebase,
 } from '../../../services/firebase'
-const Others = ({
+const SuggestedProfiles = ({
   username,
   userId,
   profileId,
-  suggestedProfileDocId,
+  profileDocId,
   loggedInUserDocId,
 }) => {
   const [followed, setfollowed] = useState(false)
   async function handleFollowUser() {
-    await updateLoggedInUserFollowingFromFirebase(profileId, loggedInUserDocId)
-    await updateFollowingProfileFollowedUserFromFirebase(
-      suggestedProfileDocId,
-      userId,
+    await updateLoggedInUserFollowingFromFirebase(
+      profileId,
+      loggedInUserDocId,
+      false,
     )
+    await updateFollowingProfileFollowedUserFromFirebase(profileDocId, userId)
 
     setfollowed(true)
   }
@@ -40,24 +41,14 @@ const Others = ({
       </button>
     </div>
   ) : null
-  //   return (
-  //     <div>
-  //       <img
-  //         width="50px"
-  //         src={`/images/avatars/${username}.jpg`}
-  //         onError={({ currentTarget }) => {
-  //           currentTarget.onerror = null // prevents looping
-  //           currentTarget.src = '/images/avatars/default.png'
-  //         }}
-  //       />
-  //       <p>{username}</p>
-  //     </div>
-  //   )
 }
 
-Others.propTypes = {
+SuggestedProfiles.propTypes = {
   username: PropTypes.string,
+  userId: PropTypes.string,
+  profileId: PropTypes.string,
+  profileDocId: PropTypes.string,
   loggedInUserDocId: PropTypes.string,
 }
 
-export default Others
+export default SuggestedProfiles
