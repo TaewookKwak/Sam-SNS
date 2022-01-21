@@ -9,7 +9,7 @@ const Sidebar = () => {
   } = useUser()
   // console.log('user in sidebar', fullName, username, userId)
   return (
-    <div>
+    <div className={styles.container}>
       <User fullName={fullName} username={username} />
       <Suggestions
         userId={userId}
