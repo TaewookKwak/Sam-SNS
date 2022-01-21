@@ -56,10 +56,12 @@ function SignUp() {
     document.title = 'Sign up - Sam SNS'
   }, [])
   return (
-    <div>
-      <div>
-        <h1>Sam's SNS</h1>
-        <h2>Sign In to see photos and videos from your friends.</h2>
+    <div className={styles.container}>
+      <div className={styles.signup}>
+        <h1 className={styles.h1}>Sam's SNS</h1>
+        <h2 className={styles.h2}>
+          Sign In to see photos and videos from your friends.
+        </h2>
         {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSignup} method="post">
           <input
@@ -103,10 +105,10 @@ function SignUp() {
           </button>
         </form>
       </div>
-      <div>
-        <span>Have an account?</span>
+      <div className={styles.signin}>
+        <span className={styles.firstPara}>Have an account?</span>
         <Link to="/login">
-          <span>Sign In</span>
+          <span className={styles.btnSignIp}>Sign In</span>
         </Link>
       </div>
     </div>

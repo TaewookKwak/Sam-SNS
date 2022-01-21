@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  padding: 1em;
+}
+
+.avatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  margin-right: 0.4em;
+}
+
+.username {
+  font-weight: 800;
+}

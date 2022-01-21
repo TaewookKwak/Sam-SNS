@@ -1,0 +1,17 @@
+.container {
+  margin: 0.5em;
+}
+
+.view {
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.displayName {
+  font-weight: 800;
+  margin-right: 0.5em;
+}
+
+.date {
+  color: gray;
+}

@@ -1,0 +1,10 @@
+.container {
+  margin-left: 0.5em;
+  padding-bottom: 1em;
+  border-bottom: 1px dashed rgb(151, 146, 146);
+}
+
+.username {
+  font-weight: 800;
+  margin-right: 0.5em;
+}

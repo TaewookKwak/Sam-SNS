@@ -1,0 +1,66 @@
+.container {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.signup {
+  border: 1px solid gray;
+  width: 25em;
+  padding: 2.5em;
+  text-align: center;
+  margin: auto;
+}
+.h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin: 0;
+  font-family: 'The Nautigal', cursive;
+}
+.h2 {
+  font-size: 1.3em;
+  color: gray;
+}
+.inputFullName,
+.inputUserName,
+.inputPassword,
+.inputEmail {
+  width: 100%;
+  height: 2.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid rgb(192, 188, 188);
+  outline: none;
+  padding: 5px;
+}
+
+.error {
+  color: red;
+  font-weight: 800;
+}
+
+.btnSubmit {
+  background-color: rgb(97, 97, 226);
+  color: white;
+  width: 100%;
+  height: 2.5em;
+}
+.btnSubmit.opacity {
+  opacity: 50%;
+}
+
+.signin {
+  border: 1px solid gray;
+  width: 25em;
+  padding: 2.5em;
+  margin: auto;
+  margin-top: 1em;
+  text-align: center;
+}
+.btnSignIp {
+  text-decoration: none;
+}

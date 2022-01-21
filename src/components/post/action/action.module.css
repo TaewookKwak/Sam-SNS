@@ -1,7 +1,25 @@
+.container {
+  padding: 0.5em;
+}
+
+.btnHeart,
+.btnComments {
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+  cursor: pointer;
+}
+
 .heart.fill {
   color: red;
 }
 
 .heart.empty {
   color: rgb(161, 161, 170);
+}
+
+.like {
+  font-weight: 800;
+  margin: 0;
+  margin-top: 0.5em;
 }

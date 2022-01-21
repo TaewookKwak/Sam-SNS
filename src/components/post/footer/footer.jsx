@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './footer.module.css'
 const Footer = ({ username, caption }) => {
   return (
-    <>
-      <span>{username}</span>
-      <span>{caption}</span>
-    </>
+    <div className={styles.container}>
+      <span className={styles.username}>{username}</span>
+      <span className={styles.caption}>{caption}</span>
+    </div>
   )
 }
 

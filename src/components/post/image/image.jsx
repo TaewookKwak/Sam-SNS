@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './image.module.css'
 const Image = ({ src, caption }) => {
   return (
-    <>
-      <img width={300} src={src} alt={caption} />
-    </>
+    <div className={styles.container}>
+      <img src={src} alt={caption} className={styles.image} />
+    </div>
   )
 }
 

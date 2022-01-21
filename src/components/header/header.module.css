@@ -1,4 +1,46 @@
+.container {
+  margin: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  -webkit-box-shadow: 0px 5px 14px -1px #828282;
+  box-shadow: 0px 5px 14px -1px #828282;
+}
+
+.title {
+  margin: 0;
+  font-family: 'The Nautigal', cursive;
+}
+
+.userBar {
+  display: flex;
+  align-items: center;
+}
+
+.btnHome,
+.btnLogout {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 2em;
+  margin: 0 0.2em;
+  color: #acac9a;
+  transition: 200ms transform ease-in-out;
+}
+
+.btnHome:hover {
+  color: #474838;
+  transform: scale(1.1);
+}
+
+.btnLogout :hover {
+  color: #474838;
+  transform: scale(1.1);
+}
+
 .avatar {
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  margin: 0 0.2em;
 }

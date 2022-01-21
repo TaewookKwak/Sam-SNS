@@ -5,6 +5,7 @@ import {
   updateFollowingProfileFollowedUserFromFirebase,
   updateLoggedInUserFollowingFromFirebase,
 } from '../../../services/firebase'
+import styles from './suggestedProfiles.module.css'
 const SuggestedProfiles = ({
   username,
   userId,
@@ -24,19 +25,26 @@ const SuggestedProfiles = ({
     setfollowed(true)
   }
   return !followed ? (
-    <div>
-      <img
-        width="50px"
-        src={`/images/avatars/${username}.jpg`}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null // prevents looping
-          currentTarget.src = '/images/avatars/default.png'
-        }}
-      />
-      <Link to={`/p/${username}`}>
-        <p>{username}</p>
-      </Link>
-      <button type="button" onClick={handleFollowUser}>
+    <div className={styles.container}>
+      <div className={styles.user}>
+        <img
+          src={`/images/avatars/${username}.jpg`}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null // prevents looping
+            currentTarget.src = '/images/avatars/default.png'
+          }}
+          className={styles.avatar}
+        />
+        <Link to={`/p/${username}`}>
+          <p className={styles.username}>{username}</p>
+        </Link>
+      </div>
+
+      <button
+        className={styles.btnFollow}
+        type="button"
+        onClick={handleFollowUser}
+      >
         Follow
       </button>
     </div>

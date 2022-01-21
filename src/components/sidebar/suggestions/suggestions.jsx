@@ -3,7 +3,7 @@ import SuggestedProfiles from './suggestedProfiles'
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
 import { getAllUsersFromFirebase } from '../../../services/firebase'
-
+import styles from './suggestions.module.css'
 const Suggestions = ({ userId, following, loggedInUserDocId }) => {
   const [profiles, setProfiles] = useState(null)
 
@@ -17,14 +17,19 @@ const Suggestions = ({ userId, following, loggedInUserDocId }) => {
   }, [userId])
 
   return !profiles ? (
-    <Skeleton count={1} />
+    <Skeleton
+      className={styles.skeleton}
+      count={1}
+      baseColor="#f3ecec"
+      highlightColor="#d3cdcd"
+    />
   ) : profiles.length > 0 ? (
-    <div>
-      <p>Suggestion for you</p>
-      <ul>
+    <div className={styles.container}>
+      <p className={styles.title}>Suggestion for you</p>
+      <ul className={styles.list}>
         {profiles.map((profile) => {
           return (
-            <li key={profile.docId}>
+            <li className={styles.item} key={profile.docId}>
               <SuggestedProfiles
                 username={profile.username}
                 userId={userId}

@@ -5,6 +5,7 @@ import Image from './image/image'
 import Action from './action/action'
 import Footer from './footer/footer'
 import Comment from './comment/comment'
+import styles from './post.module.css'
 const Post = ({ content }) => {
   const commentInput = useRef(null)
   const handleFocus = () => {
@@ -12,23 +13,25 @@ const Post = ({ content }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <Header username={content.username} />
       <Image src={content.imageSrc} caption={content.caption} />
-      <Action
-        docId={content.docId}
-        totalLikes={content.likes.length}
-        likedPhoto={content.userLikedPhoto}
-        handleFocus={handleFocus}
-      />
-      <Footer username={content.username} caption={content.caption} />
-      <Comment
-        docId={content.docId}
-        comments={content.comments}
-        posted={content.dateCreated}
-        commentInput={commentInput}
-      />
-    </>
+      <div className={styles.containerOfRest}>
+        <Action
+          docId={content.docId}
+          totalLikes={content.likes.length}
+          likedPhoto={content.userLikedPhoto}
+          handleFocus={handleFocus}
+        />
+        <Footer username={content.username} caption={content.caption} />
+        <Comment
+          docId={content.docId}
+          comments={content.comments}
+          posted={content.dateCreated}
+          commentInput={commentInput}
+        />
+      </div>
+    </div>
   )
 }
 

@@ -15,11 +15,11 @@ const Timeline = () => {
       highlightColor="#d3cdcd"
     />
   ) : photos?.length > 0 ? (
-    <>
+    <div className={styles.container}>
       {photos.map((photo) => {
         return <Post key={photo.docId} content={photo} />
       })}
-    </>
+    </div>
   ) : (
     <p>Follow people to see how they are doing!</p>
   )

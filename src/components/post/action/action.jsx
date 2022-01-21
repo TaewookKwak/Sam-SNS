@@ -29,7 +29,7 @@ const Action = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <button
         onClick={handleToggleLiked}
         onKeyDown={(event) => {
@@ -37,19 +37,22 @@ const Action = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
             handleToggleLiked()
           }
         }}
+        className={styles.btnHeart}
       >
         <FontAwesomeIcon
           icon={faHeart}
           className={`${styles.heart} ${getHeartStyle(toggleLiked)}`}
         />
       </button>
-      <button onClick={handleFocus}>
+      <button onClick={handleFocus} className={styles.btnComments}>
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       <div>
-        <p>{likes <= 1 ? `${likes} like` : `${likes} likes`}</p>
+        <p className={styles.like}>
+          {likes <= 1 ? `${likes} like` : `${likes} likes`}
+        </p>
       </div>
-    </>
+    </div>
   )
 }
 

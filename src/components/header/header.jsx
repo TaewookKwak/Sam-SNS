@@ -12,30 +12,37 @@ const Header = () => {
 
   console.log('user in header', user)
   return (
-    <header>
+    <header className={styles.container}>
       <Link to={ROUTES.DASHBOARD}>
-        <h1>HEADER</h1>
+        <h1 className={styles.title}>SAM's SNS</h1>
       </Link>
       {user ? (
-        <>
+        <div className={styles.userBar}>
           <Link to={ROUTES.DASHBOARD}>
-            <button type="button">
+            <button className={styles.btnHome} type="button">
               <FontAwesomeIcon icon={faHome} />
             </button>
           </Link>
-          <button type="button" onClick={() => firebase.auth().signOut()}>
+          <button
+            className={styles.btnLogout}
+            type="button"
+            onClick={() => firebase.auth().signOut()}
+          >
             <FontAwesomeIcon icon={faSignOutAlt} />
           </button>
-          <div>
-            <Link to={`/p/${user.displayName}`}>
-              <img
-                className={styles.avatar}
-                src={`/images/avatars/${user.displayName}.jpg`}
-                alt={`${user.displayName} profile picture`}
-              />
-            </Link>
-          </div>
-        </>
+
+          <Link to={`/p/${user.displayName}`}>
+            <img
+              className={styles.avatar}
+              src={`/images/avatars/${user.displayName}.jpg`}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null // prevents looping
+                currentTarget.src = '/images/avatars/default.png'
+              }}
+              alt={`${user.displayName} profile picture`}
+            />
+          </Link>
+        </div>
       ) : (
         <>
           <Link to={ROUTES.LOGIN}>

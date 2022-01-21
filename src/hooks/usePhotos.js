@@ -11,6 +11,7 @@ const usePhotos = () => {
     user: { uid: userId = '' },
   } = useContext(UserContext)
 
+  console.log(userId)
   useEffect(() => {
     async function getTimelinePhotos() {
       const [{ following }] = await getUserFromFirebaseByUserId(userId)
