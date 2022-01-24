@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
 import styles from './header.module.css'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 const Header = () => {
   const { firebase } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
-
+  const history = useHistory()
   console.log('user in header', user)
   return (
     <header className={styles.container}>
@@ -26,7 +27,10 @@ const Header = () => {
           <button
             className={styles.btnLogout}
             type="button"
-            onClick={() => firebase.auth().signOut()}
+            onClick={() => {
+              firebase.auth().signOut()
+              history.push(ROUTES.LOGIN)
+            }}
           >
             <FontAwesomeIcon icon={faSignOutAlt} />
           </button>

@@ -12,7 +12,7 @@ const Comment = ({ docId, comments: allComments, posted, commentInput }) => {
     <>
       <div className={styles.container}>
         {comments.length >= 3 && (
-          <p className={styles.view}>View All {comments.length} comments</p>
+          <p className={styles.view}>View All comments</p>
         )}
         {comments.slice(0, 3).map((item) => {
           return (
