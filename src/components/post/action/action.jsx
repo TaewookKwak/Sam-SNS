@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import styles from './action.module.css'
+
 const Action = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
   const {
     user: { uid: userId = '' },
@@ -44,7 +45,15 @@ const Action = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
           className={`${styles.heart} ${getHeartStyle(toggleLiked)}`}
         />
       </button>
-      <button onClick={handleFocus} className={styles.btnComments}>
+      <button
+        onClick={handleFocus}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            handleFocus()
+          }
+        }}
+        className={styles.btnComments}
+      >
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       <div>
