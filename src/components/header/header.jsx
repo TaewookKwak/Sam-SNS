@@ -34,7 +34,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faSignOutAlt} />
           </button>
 
-          <Link to={`/p/${user.displayName.toLowerCase()}`}>
+          <Link to={`/p/${user.displayName}`}>
             <img
               className={styles.avatar}
               src={`/images/avatars/${user.displayName}.jpg`}

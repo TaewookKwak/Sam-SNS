@@ -9,6 +9,10 @@ const Header = ({ username }) => {
         className={styles.avatar}
         src={`/images/avatars/${username}.jpg`}
         alt={`${username} profile image`}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null // prevents looping
+          currentTarget.src = '/images/avatars/default.png'
+        }}
       />
       <p className={styles.username}>{username}</p>
     </Link>

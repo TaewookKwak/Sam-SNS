@@ -26,7 +26,7 @@ function SignUp() {
           .createUserWithEmailAndPassword(emailAddress, password)
 
         await createdUserResult.user.updateProfile({
-          displayName: userName,
+          displayName: userName.toLowerCase(),
         })
 
         await firebase.firestore().collection('users').add({
