@@ -10,13 +10,13 @@ import IsUserLoggedIn from './helpers/is-user-logged-in'
 import Login from './pages/login/login'
 import SignUp from './pages/signup/signup'
 import Profile from './pages/profile/profile'
+
 const login = lazy(() => import('./pages/login/login'))
 const signup = lazy(() => import('./pages/signup/signup'))
 const notFound = lazy(() => import('./pages/not-found/not-found'))
 const dashboard = lazy(() => import('./pages/dashboard/dashboard'))
 function App() {
   const { user } = useAuthListener()
-  console.log('usersss', user)
   return (
     <UserContext.Provider value={{ user }}>
       <Router>
@@ -39,7 +39,7 @@ function App() {
             >
               <SignUp />
             </IsUserLoggedIn>
-            <Profile path={ROUTES.PROFILE} component={Profile} />
+            <Route path={ROUTES.PROFILE} component={Profile} />
             <Route component={notFound} />
           </Switch>
         </Suspense>

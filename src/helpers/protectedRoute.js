@@ -6,7 +6,7 @@ import * as ROUTES from '../constants/routes'
 const ProtectedRoute = ({ user, children, ...rest }) => {
   return (
     <Route
-      {...rest}
+      {...rest} // rest of properties
       render={({ location }) => {
         if (user) {
           return children

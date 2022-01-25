@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import {
@@ -20,8 +20,11 @@ const SuggestedProfiles = ({
       loggedInUserDocId,
       false,
     )
-    await updateFollowingProfileFollowedUserFromFirebase(profileDocId, userId)
-
+    await updateFollowingProfileFollowedUserFromFirebase(
+      profileDocId,
+      userId,
+      false,
+    )
     setfollowed(true)
   }
   return !followed ? (
