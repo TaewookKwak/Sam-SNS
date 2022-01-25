@@ -11,15 +11,12 @@ const usePhotos = () => {
     user: { uid: userId = '' },
   } = useContext(UserContext)
 
-  console.log(userId)
   useEffect(() => {
     async function getTimelinePhotos() {
       const [{ following }] = await getUserFromFirebaseByUserId(userId)
       let followedUserPhotos = []
       if (following.length > 0) {
         followedUserPhotos = await getPhotosFromFirebase(userId, following)
-      } else {
-        console.log('you shouldnt see this!!!!!!!!!!!!!!')
       }
       followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated)
       setPhotos(followedUserPhotos)

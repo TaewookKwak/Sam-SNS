@@ -2,3 +2,18 @@
   width: 80%;
   height: 20em;
 }
+
+.container {
+  text-align: center;
+}
+
+.refresh {
+  width: fit-content;
+  transition: 200ms ease-out, transfrom;
+  margin: 1em auto;
+}
+
+.refresh:hover {
+  color: #8cb2b2;
+  transform: rotate(60deg);
+}

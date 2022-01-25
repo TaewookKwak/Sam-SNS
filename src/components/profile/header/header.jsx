@@ -50,20 +50,22 @@ const Header = ({
     }
     if (user.username && profileUserId) isLoggedInUserFollowingProfile()
   }, [user.username, profileUserId])
-  console.log('user', user)
-  console.log('profile', profile)
+
   return (
     <div>
-      <button
-        onClick={handleFollow}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleFollow()
-          }
-        }}
-      >
-        {isFollowedProfile ? `Unfollow` : `Follow`}
-      </button>
+      {user.userId !== profileUserId && (
+        <button
+          onClick={handleFollow}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleFollow()
+            }
+          }}
+        >
+          {isFollowedProfile ? `Unfollow` : `Follow`}
+        </button>
+      )}
+
       <img
         width={100}
         src={`/images/avatars/${username}.jpg`}
@@ -76,7 +78,9 @@ const Header = ({
       <p>fullName : {fullName}</p>
 
       <p>username : {username}</p>
-      {followerCount || following.length || photoCount ? (
+      {followerCount !== undefined ||
+      following.length !== undefined ||
+      photoCount !== undefined ? (
         <>
           <p>posts : {photoCount}</p>
           <p>followers : {followerCount}</p>

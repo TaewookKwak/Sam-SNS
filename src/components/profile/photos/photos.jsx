@@ -4,15 +4,24 @@ import Skeleton from 'react-loading-skeleton'
 import React from 'react'
 
 const Photos = ({ photos }) => {
-  return (
-    <div>
-      <img width={100} src={`${photos}`} alt="" />
-    </div>
+  return !photos ? (
+    <Skeleton count={12} width={100} height={200} />
+  ) : (
+    <ul>
+      {photos.map((item) => {
+        return (
+          <li key={`${item.docId}-${item.userId}`}>
+            <img width={100} src={item.imageSrc} alt="" />
+          </li>
+        )
+      })}
+      {!photos || (photos.length === 0 && <p>No Posts Yet</p>)}
+    </ul>
   )
 }
 
 Photos.propTypes = {
-  photos: PropTypes.string.isRequired,
+  photos: PropTypes.array.isRequired,
 }
 
 export default Photos

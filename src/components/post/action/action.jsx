@@ -15,7 +15,6 @@ const Action = ({ docId, totalLikes, likedPhoto, handleFocus }) => {
   const { firebase, FieldValue } = useContext(FirebaseContext)
   const handleToggleLiked = async () => {
     setToggleLiked((toggleLiked) => !toggleLiked)
-    console.log(toggleLiked, docId, userId)
     await firebase
       .firestore()
       .collection('photos')

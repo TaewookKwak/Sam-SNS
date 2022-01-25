@@ -105,7 +105,6 @@ export async function updateLoggedInUserFollowingFromFirebase(
   loggedInUserDocId,
   isFollowingProfile,
 ) {
-  console.log(profileId, loggedInUserDocId, isFollowingProfile)
   await firebase
     .firestore()
     .collection('users')

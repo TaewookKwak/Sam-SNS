@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
 import Timeline from '../../components/timeline/timeline'
@@ -8,7 +8,7 @@ const Dashboard = () => {
     document.title = 'Dashboard - Sams SNS'
   }, [])
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
       <main className={styles.main}>
         <section className={styles.timeline}>

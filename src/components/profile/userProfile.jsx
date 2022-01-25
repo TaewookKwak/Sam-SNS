@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useReducer } from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { getPhotosByUsername, getUserByUsername } from '../../services/firebase'
 import Header from './header/header'
 import Photos from './photos/photos'
@@ -20,7 +21,6 @@ const UserProfile = ({ user }) => {
   useEffect(() => {
     async function getProfileInfoAndPhotos() {
       const photos = await getPhotosByUsername(user.username)
-      console.log('phtoos and user ', photos, user)
       dispatch({
         profile: user,
         photosCollection: photos,
@@ -40,14 +40,7 @@ const UserProfile = ({ user }) => {
             followerCount={followerCount}
             setFollowerCount={dispatch}
           />
-          {photosCollection.map((item) => {
-            return (
-              <Photos
-                key={`${item.docId}-${item.userId}`}
-                photos={item.imageSrc}
-              />
-            )
-          })}
+          <Photos photos={photosCollection} />
         </>
       ) : null}
     </>

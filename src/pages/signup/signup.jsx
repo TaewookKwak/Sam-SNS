@@ -24,8 +24,7 @@ function SignUp() {
         const createdUserResult = await firebase
           .auth()
           .createUserWithEmailAndPassword(emailAddress, password)
-        console.log('createdUserResult', createdUserResult)
-        console.log('firebase', firebase)
+
         await createdUserResult.user.updateProfile({
           displayName: userName,
         })
@@ -36,6 +35,7 @@ function SignUp() {
           fullName: fullName.toLowerCase(),
           emailAddress: emailAddress.toLowerCase(),
           following: [],
+          followers: [],
           dataCreated: Date.now(),
         })
 

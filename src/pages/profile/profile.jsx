@@ -10,10 +10,10 @@ const Profile = () => {
   const [user, setUser] = useState({})
   const [userExists, setUserExists] = useState(false)
   const history = useHistory()
-
   useEffect(() => {
     async function checkUserExists() {
       const user = await getUserByUsername(username)
+      console.log('useruseruseruser', user)
       if (user.length > 0) {
         setUser(user[0])
         setUserExists(true)
@@ -23,7 +23,7 @@ const Profile = () => {
       }
     }
 
-    checkUserExists()
+    username && checkUserExists()
   }, [username, history])
 
   return userExists ? (

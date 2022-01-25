@@ -11,7 +11,6 @@ const Suggestions = ({ userId, following, loggedInUserDocId }) => {
     async function getProfile() {
       const response = await getAllUsersFromFirebase(userId, following)
       setProfiles(response)
-      console.log(response, userId)
     }
     if (userId) getProfile()
   }, [userId])

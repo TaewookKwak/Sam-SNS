@@ -26,6 +26,7 @@ const SuggestedProfiles = ({
       false,
     )
     setfollowed(true)
+    window.location.reload()
   }
   return !followed ? (
     <div className={styles.container}>

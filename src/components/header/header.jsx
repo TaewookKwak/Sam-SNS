@@ -11,7 +11,6 @@ const Header = () => {
   const { firebase } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
   const history = useHistory()
-  console.log('user in header', user)
   return (
     <header className={styles.container}>
       <Link to={ROUTES.DASHBOARD}>
@@ -35,7 +34,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faSignOutAlt} />
           </button>
 
-          <Link to={`/p/${user.displayName}`}>
+          <Link to={`/p/${user.displayName.toLowerCase()}`}>
             <img
               className={styles.avatar}
               src={`/images/avatars/${user.displayName}.jpg`}
