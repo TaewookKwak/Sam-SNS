@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import Write from '../../components/footer/write'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
 import Timeline from '../../components/timeline/timeline'
@@ -16,6 +17,9 @@ const Dashboard = () => {
         </section>
         <section className={styles.sidebar}>
           <Sidebar />
+        </section>
+        <section className={styles.write}>
+          <Write />
         </section>
       </main>
     </div>

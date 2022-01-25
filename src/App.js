@@ -10,6 +10,7 @@ import IsUserLoggedIn from './helpers/is-user-logged-in'
 import Login from './pages/login/login'
 import SignUp from './pages/signup/signup'
 import Profile from './pages/profile/profile'
+import Posting from './pages/posting/posting'
 
 const login = lazy(() => import('./pages/login/login'))
 const signup = lazy(() => import('./pages/signup/signup'))
@@ -24,6 +25,9 @@ function App() {
           <Switch>
             <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
               <Dashboard />
+            </ProtectedRoute>
+            <ProtectedRoute user={user} path={ROUTES.WRITE} exact>
+              <Posting />
             </ProtectedRoute>
             <IsUserLoggedIn
               user={user}

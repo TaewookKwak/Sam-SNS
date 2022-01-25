@@ -22,3 +22,9 @@
   position: sticky;
   top: 5.8em;
 }
+
+.write {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+}
