@@ -5,12 +5,13 @@ import styles from './sidebar.module.css'
 import User from './user/user'
 const Sidebar = () => {
   const {
-    user: { docId, fullName, username, userId, following },
+    user: { imageUrl = '', docId, fullName, username, userId, following },
   } = useUser()
   // console.log('user in sidebar', fullName, username, userId)
+  console.log(imageUrl)
   return (
     <div className={styles.container}>
-      <User fullName={fullName} username={username} />
+      <User imageUrl={imageUrl} fullName={fullName} username={username} />
       <Suggestions
         userId={userId}
         username={username}

@@ -35,6 +35,7 @@ const Suggestions = ({ userId, following, loggedInUserDocId }) => {
                 profileId={profile.userId}
                 profileDocId={profile.docId}
                 loggedInUserDocId={loggedInUserDocId}
+                profile={profile}
               />
             </li>
           )

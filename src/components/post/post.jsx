@@ -11,7 +11,6 @@ const Post = ({ content }) => {
   const handleFocus = () => {
     commentInput.current.focus()
   }
-
   return (
     <div className={styles.container}>
       <Header username={content.username} />

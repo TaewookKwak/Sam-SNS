@@ -7,6 +7,7 @@ import {
 } from '../../../services/firebase'
 import styles from './suggestedProfiles.module.css'
 const SuggestedProfiles = ({
+  profile,
   username,
   userId,
   profileId,
@@ -32,7 +33,7 @@ const SuggestedProfiles = ({
     <div className={styles.container}>
       <div className={styles.user}>
         <img
-          src={`/images/avatars/${username}.jpg`}
+          src={profile.imageUrl || '/images/avatars/default.png'}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null // prevents looping
             currentTarget.src = '/images/avatars/default.png'

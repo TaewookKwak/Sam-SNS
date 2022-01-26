@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import styles from './user.module.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const User = ({ username, fullName }) =>
+const User = ({ username, fullName, imageUrl }) =>
   !username || !fullName ? (
     <Skeleton
       className={styles.skeleton}
@@ -18,7 +18,7 @@ const User = ({ username, fullName }) =>
       <Link to={`/p/${username}`} className={styles.link}>
         <img
           className={styles.avatar}
-          src={`/images/avatars/${username}.jpg`}
+          src={imageUrl || '/images/avatars/default.png'}
           alt=""
           onError={({ currentTarget }) => {
             currentTarget.onerror = null // prevents looping

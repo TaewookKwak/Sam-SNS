@@ -2,12 +2,16 @@ import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import useUser from '../../../hooks/useUser'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import {
   getAllPhotosByUserIdFromFirebase,
   isUserFollowingProfile,
   updateFollowingProfileFollowedUserFromFirebase,
   updateLoggedInUserFollowingFromFirebase,
 } from '../../../services/firebase'
+import Popup from './popup/popup'
+
 const Header = ({
   photoCount,
   profile: {
@@ -23,6 +27,8 @@ const Header = ({
   setFollowerCount,
 }) => {
   const [isFollowedProfile, setIsFollowedProfile] = useState()
+  const [trigger, setTrigger] = useState(false)
+  const [image, setImage] = useState('')
   const { user } = useUser()
   const handleFollow = async () => {
     setIsFollowedProfile((isFollowedProfile) => !isFollowedProfile)
@@ -40,6 +46,8 @@ const Header = ({
       isFollowedProfile,
     )
   }
+  console.log(profile)
+
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
       const isFollowing = await isUserFollowingProfile(
@@ -65,16 +73,23 @@ const Header = ({
           {isFollowedProfile ? `Unfollow` : `Follow`}
         </button>
       )}
+      <div>
+        <img
+          width={100}
+          src={profile.imageUrl || '/images/avatars/default.png'}
+          alt=""
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null // prevents looping
+            currentTarget.src = '/images/avatars/default.png'
+          }}
+        />
+        {user.userId === profileUserId && (
+          <button onClick={() => setTrigger((prev) => !prev)}>
+            <FontAwesomeIcon icon={faUserEdit} />
+          </button>
+        )}
+      </div>
 
-      <img
-        width={100}
-        src={`/images/avatars/${username}.jpg`}
-        alt=""
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null // prevents looping
-          currentTarget.src = '/images/avatars/default.png'
-        }}
-      />
       <p>fullName : {fullName}</p>
 
       <p>username : {username}</p>
@@ -89,6 +104,22 @@ const Header = ({
       ) : (
         <Skeleton count={1} width={100} height={50} />
       )}
+      <Popup
+        trigger={trigger}
+        setTrigger={setTrigger}
+        setImage={setImage}
+        image={image}
+      >
+        {image && <img src={image} alt="" width={100} />}
+        <button
+          onClick={() => {
+            setTrigger((prev) => !prev)
+            setImage('')
+          }}
+        >
+          close
+        </button>
+      </Popup>
     </div>
   )
 }

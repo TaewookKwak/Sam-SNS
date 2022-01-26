@@ -7,10 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
 import styles from './header.module.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import useUser from '../../hooks/useUser'
 const Header = () => {
   const { firebase } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
+  const { user: currentUser } = useUser()
   const history = useHistory()
+
   return (
     <header className={styles.container}>
       <Link to={ROUTES.DASHBOARD}>
@@ -37,7 +40,7 @@ const Header = () => {
           <Link to={`/p/${user.displayName}`}>
             <img
               className={styles.avatar}
-              src={`/images/avatars/${user.displayName}.jpg`}
+              src={currentUser.imageUrl || '/images/avatars/default.png'}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping
                 currentTarget.src = '/images/avatars/default.png'

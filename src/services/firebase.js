@@ -157,3 +157,15 @@ export async function isUserFollowingProfile(username, profileUserId) {
   )
   return isUserFollowingProfileUser
 }
+
+export async function postPhotoWithPhotosInfo(postInfo, caption, file) {
+  await firebase
+    .firestore()
+    .collection('photos')
+    .add({
+      ...postInfo,
+      caption: caption,
+      dateCreated: Date.now(),
+      imageSrc: file,
+    })
+}

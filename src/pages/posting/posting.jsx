@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import FirebaseContext from '../../context/firebase'
 import UserContext from '../../context/user'
 import styles from './posting.module.css'
+import * as ROUTES from '../../constants/routes'
+import { useHistory } from 'react-router-dom'
+import { postPhotoWithPhotosInfo } from '../../services/firebase'
 
 const Posting = () => {
   const iniitailPost = {
@@ -21,25 +24,17 @@ const Posting = () => {
   const [file, setFile] = useState('')
   const [caption, setCaption] = useState('')
   const captionRef = useRef()
+  const history = useHistory()
 
   const onPost = async (e) => {
     e.preventDefault()
     // 1.firebase에 저장
-    return firebase
-      .firestore()
-      .collection('photos')
-      .add({
-        ...postInfo,
-        caption: captionRef.current.value,
-        dateCreated: Date.now(),
-        imageSrc: file,
-      })
-
-    // 2.입력창 초기화
+    await postPhotoWithPhotosInfo(postInfo, captionRef.current.value, file)
     // 3.go to Dashboard
+    history.push(ROUTES.DASHBOARD)
   }
 
-  const onFileUpload = async (e) => {
+  const onUploadFile = async (e) => {
     let file = e.target.files[0]
 
     await firebase
@@ -81,7 +76,7 @@ const Posting = () => {
             }, 500)
           }}
         />
-        <input type="file" onChange={onFileUpload} />
+        <input type="file" onChange={onUploadFile} />
         <button disabled={file === '' || captionRef.current.value === ''}>
           Post
         </button>

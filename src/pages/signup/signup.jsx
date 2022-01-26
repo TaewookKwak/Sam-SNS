@@ -37,6 +37,7 @@ function SignUp() {
           following: [],
           followers: [],
           dataCreated: Date.now(),
+          ImageUrl: '',
         })
 
         history.push(ROUTES.DASHBOARD)
