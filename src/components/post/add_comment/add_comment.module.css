@@ -1,0 +1,19 @@
+.form {
+  text-align: center;
+  display: flex;
+}
+.inputComment {
+  flex-basis: 80%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+.btnPost {
+  margin: 0 0.5em;
+  flex-basis: 20%;
+  border: none;
+  border-radius: 15%;
+  background-color: transparent;
+  -webkit-box-shadow: 0px 5px 14px -1px #828282;
+  box-shadow: 0px 5px 14px -1px #828282;
+}

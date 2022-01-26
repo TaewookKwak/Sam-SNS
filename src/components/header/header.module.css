@@ -10,6 +10,7 @@
   left: 0;
   right: 0;
   background-color: white;
+  z-index: 9999;
 }
 
 .title {
@@ -48,4 +49,9 @@
   height: 2em;
   border-radius: 50%;
   margin: 0 0.2em;
+  transition: 200ms transform ease-in-out;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
 }

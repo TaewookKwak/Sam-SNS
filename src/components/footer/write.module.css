@@ -8,4 +8,9 @@
   -webkit-box-shadow: 0px 5px 14px -1px #828282;
   box-shadow: 0px 5px 14px -1px #828282;
   cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.2);
 }

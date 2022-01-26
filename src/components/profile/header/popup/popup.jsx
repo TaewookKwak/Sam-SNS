@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useContext } from 'react/cjs/react.development'
 import FirebaseContext from '../../../../context/firebase'
 import UserContext from '../../../../context/user'
@@ -8,9 +8,9 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
   const [userDocId, setUserDocId] = useState('')
   const { firebase, FieldValue } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
+  const fileRef = useRef()
   const onUploadFile = async (e) => {
     let file = e.target.files[0]
-
     await firebase
       .storage()
       .ref()
@@ -24,6 +24,10 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  const onClick = () => {
+    fileRef.current.click()
   }
 
   const onSubmit = async (e) => {
@@ -45,12 +49,19 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
   return trigger ? (
     <div className={styles.popup}>
       <div className={styles.inner}>
-        <form onSubmit={onSubmit}>
-          <input type="file" onChange={onUploadFile} />
-          <button disabled={!image}>Submit</button>
-        </form>
-
         {children}
+        <form className={styles.form} onSubmit={onSubmit}>
+          <input
+            ref={fileRef}
+            className={styles.file}
+            type="file"
+            onChange={onUploadFile}
+          />
+          <button className={styles.btnSubmit} disabled={!image}>
+            Submit
+          </button>
+        </form>
+        <div onClick={onClick} className={styles.uploader}></div>
       </div>
     </div>
   ) : null

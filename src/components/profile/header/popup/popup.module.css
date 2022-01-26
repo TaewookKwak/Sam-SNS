@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +23,43 @@
 
 .inner {
   position: relative;
-  padding: 32px;
+  padding: 2em;
   background-color: white;
+  -webkit-box-shadow: 0px 5px 14px -1px #828282;
+  box-shadow: 0px 5px 14px -1px #828282;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+}
+
+.file {
+  display: none;
+}
+
+.btnSubmit {
+  width: 40vh;
+  border: none;
+  cursor: pointer;
+  padding: 0.3em;
+  border-radius: 1em;
+  background-color: rgb(184, 181, 181);
+  margin: 2em;
+}
+
+.uploader {
+  position: absolute;
+  top: 2em;
+  background-color: transparent;
+  width: 10em;
+  height: 10em;
+  text-align: center;
+  line-height: 10em;
+  border-radius: 50%;
+  cursor: pointer;
 }

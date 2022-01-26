@@ -11,6 +11,7 @@ import {
   updateLoggedInUserFollowingFromFirebase,
 } from '../../../services/firebase'
 import Popup from './popup/popup'
+import styles from './header.module.css'
 
 const Header = ({
   photoCount,
@@ -60,47 +61,52 @@ const Header = ({
   }, [user.username, profileUserId])
 
   return (
-    <div>
-      {user.userId !== profileUserId && (
-        <button
-          onClick={handleFollow}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleFollow()
-            }
-          }}
-        >
-          {isFollowedProfile ? `Unfollow` : `Follow`}
-        </button>
-      )}
-      <div>
-        <img
-          width={100}
-          src={profile.imageUrl || '/images/avatars/default.png'}
-          alt=""
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null // prevents looping
-            currentTarget.src = '/images/avatars/default.png'
-          }}
-        />
-        {user.userId === profileUserId && (
-          <button onClick={() => setTrigger((prev) => !prev)}>
-            <FontAwesomeIcon icon={faUserEdit} />
+    <div className={styles.container}>
+      <div className={styles.profileInfo}>
+        <div className={styles.profileImage}>
+          <img
+            className={styles.image}
+            src={profile.imageUrl || '/images/avatars/default.png'}
+            alt=""
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null // prevents looping
+              currentTarget.src = '/images/avatars/default.png'
+            }}
+          />
+          {user.userId === profileUserId && (
+            <button
+              className={styles.btnEditImage}
+              onClick={() => setTrigger((prev) => !prev)}
+            >
+              <FontAwesomeIcon icon={faUserEdit} />
+            </button>
+          )}
+        </div>
+        <p className={styles.fullName}>{fullName}</p>
+        <p className={styles.username}>{username}</p>
+        {user.userId !== profileUserId && (
+          <button
+            className={styles.btnFollow}
+            onClick={handleFollow}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleFollow()
+              }
+            }}
+          >
+            {isFollowedProfile ? `Unfollow` : `Follow`}
           </button>
         )}
       </div>
 
-      <p>fullName : {fullName}</p>
-
-      <p>username : {username}</p>
       {followerCount !== undefined ||
       following.length !== undefined ||
       photoCount !== undefined ? (
-        <>
-          <p>posts : {photoCount}</p>
-          <p>followers : {followerCount}</p>
-          <p>following : {following.length}</p>
-        </>
+        <div className={styles.profileRestInfo}>
+          <p className={styles.follwersCount}>{followerCount} followers</p>
+          <p className={styles.postsCount}>{photoCount} posts</p>
+          <p className={styles.followingCount}>{following.length} following</p>
+        </div>
       ) : (
         <Skeleton count={1} width={100} height={50} />
       )}
@@ -110,8 +116,11 @@ const Header = ({
         setImage={setImage}
         image={image}
       >
-        {image && <img src={image} alt="" width={100} />}
+        <div className={styles.previewContainer}>
+          {image && <img className={styles.preview} src={image} alt="" />}
+        </div>
         <button
+          className={styles.btnClose}
           onClick={() => {
             setTrigger((prev) => !prev)
             setImage('')

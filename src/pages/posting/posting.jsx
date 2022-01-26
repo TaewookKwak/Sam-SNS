@@ -5,6 +5,7 @@ import styles from './posting.module.css'
 import * as ROUTES from '../../constants/routes'
 import { useHistory } from 'react-router-dom'
 import { postPhotoWithPhotosInfo } from '../../services/firebase'
+import Skeleton from 'react-loading-skeleton'
 
 const Posting = () => {
   const iniitailPost = {
@@ -23,7 +24,9 @@ const Posting = () => {
   const [postInfo, setPostInfo] = useState(iniitailPost)
   const [file, setFile] = useState('')
   const [caption, setCaption] = useState('')
+  const [loading, setLoading] = useState(false)
   const captionRef = useRef()
+  const fileClickRef = useRef()
   const history = useHistory()
 
   const onPost = async (e) => {
@@ -34,9 +37,19 @@ const Posting = () => {
     history.push(ROUTES.DASHBOARD)
   }
 
+  const onClick = () => {
+    fileClickRef.current.click()
+  }
+
+  const onClose = () => {
+    history.push(ROUTES.DASHBOARD)
+    setCaption('')
+    setFile('')
+  }
+
   const onUploadFile = async (e) => {
     let file = e.target.files[0]
-
+    setLoading(true)
     await firebase
       .storage()
       .ref()
@@ -50,6 +63,7 @@ const Posting = () => {
       .catch((err) => {
         console.log(err)
       })
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -62,9 +76,21 @@ const Posting = () => {
 
   return (
     <div className={styles.container}>
-      <form action="" onSubmit={onPost}>
+      <form className={styles.form} action="" onSubmit={onPost}>
         <input
+          ref={fileClickRef}
+          className={styles.inputFile}
+          type="file"
+          onChange={onUploadFile}
+        />
+        <div className={styles.imageBox} onClick={onClick}>
+          {file ? <img className={styles.image} src={file} /> : <p>Click</p>}
+          {loading ? <Skeleton count={1} /> : null}
+        </div>
+        <input
+          className={styles.inputText}
           type="text"
+          placeholder="please fill your message"
           ref={captionRef}
           onKeyUp={() => {
             let Query = captionRef.current.value.toLowerCase()
@@ -76,11 +102,17 @@ const Posting = () => {
             }, 500)
           }}
         />
-        <input type="file" onChange={onUploadFile} />
-        <button disabled={file === '' || captionRef.current.value === ''}>
+
+        <button
+          className={styles.btnPost}
+          disabled={file === '' || captionRef.current.value === ''}
+        >
           Post
         </button>
       </form>
+      <button className={styles.btnClose} onClick={onClose}>
+        close
+      </button>
     </div>
   )
 }

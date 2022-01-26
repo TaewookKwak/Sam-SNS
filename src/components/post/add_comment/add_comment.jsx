@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Proptypes from 'prop-types'
 import FirebaseContext from '../../../context/firebase'
 import UserContext from '../../../context/user'
-
+import styles from './add_comment.module.css'
 const AddComment = ({ docId, comments, setComments, commentInput }) => {
   const [comment, setComment] = useState('')
   const { firebase, FieldValue } = useContext(FirebaseContext)
@@ -25,12 +25,14 @@ const AddComment = ({ docId, comments, setComments, commentInput }) => {
   return (
     <>
       <form
+        className={styles.form}
         method="POST"
         onSubmit={(e) =>
           comment.length >= 1 ? handleSumbitComment(e) : e.preventDefault()
         }
       >
         <input
+          className={styles.inputComment}
           ref={commentInput}
           type="text"
           name="add-comment"
@@ -38,6 +40,7 @@ const AddComment = ({ docId, comments, setComments, commentInput }) => {
           onChange={({ target }) => setComment(target.value)}
         />
         <button
+          className={styles.btnPost}
           type="button"
           disabled={comment.length < 1}
           onClick={handleSumbitComment}

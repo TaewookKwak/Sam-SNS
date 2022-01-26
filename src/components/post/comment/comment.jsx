@@ -27,13 +27,13 @@ const Comment = ({ docId, comments: allComments, posted, commentInput }) => {
         <p className={styles.date}>
           {formatDistance(posted, new Date(), { addSuffix: true })}
         </p>
+        <AddComment
+          docId={docId}
+          comments={comments}
+          setComments={setComments}
+          commentInput={commentInput}
+        />
       </div>
-      <AddComment
-        docId={docId}
-        comments={comments}
-        setComments={setComments}
-        commentInput={commentInput}
-      />
     </>
   )
 }
