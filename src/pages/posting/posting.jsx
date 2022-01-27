@@ -37,6 +37,10 @@ const Posting = () => {
     history.push(ROUTES.DASHBOARD)
   }
 
+  useEffect(() => {
+    document.title = 'Posting - Sams SNS'
+  }, [])
+
   const onClick = () => {
     fileClickRef.current.click()
   }

@@ -10,6 +10,11 @@ const Profile = () => {
   const [user, setUser] = useState({})
   const [userExists, setUserExists] = useState(false)
   const history = useHistory()
+
+  useEffect(() => {
+    document.title = 'Profile - Sams SNS'
+  }, [])
+
   useEffect(() => {
     async function checkUserExists() {
       const user = await getUserByUsername(username)
