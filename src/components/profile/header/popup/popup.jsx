@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useContext } from 'react/cjs/react.development'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import FirebaseContext from '../../../../context/firebase'
 import UserContext from '../../../../context/user'
 import { getUserFromFirebaseByUserId } from '../../../../services/firebase'
@@ -8,6 +7,7 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
   const [userDocId, setUserDocId] = useState('')
   const { firebase, FieldValue } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
+
   const fileRef = useRef()
   const onUploadFile = async (e) => {
     let file = e.target.files[0]

@@ -9,15 +9,17 @@ const Sidebar = () => {
   } = useUser()
   // console.log('user in sidebar', fullName, username, userId)
   return (
-    <div className={styles.container}>
-      <User imageUrl={imageUrl} fullName={fullName} username={username} />
-      <Suggestions
-        userId={userId}
-        username={username}
-        following={following}
-        loggedInUserDocId={docId}
-      />
-    </div>
+    imageUrl !== undefined && (
+      <div className={styles.container}>
+        <User imageUrl={imageUrl} fullName={fullName} username={username} />
+        <Suggestions
+          userId={userId}
+          username={username}
+          following={following}
+          loggedInUserDocId={docId}
+        />
+      </div>
+    )
   )
 }
 

@@ -57,6 +57,18 @@
   transform: scale(1.1);
 }
 
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnLogin,
+.btnSignup {
+  font-weight: 800;
+  margin: 0 0.5em;
+}
+
 @media screen and (max-width: 768px) {
   .title {
     font-size: 1.2em;

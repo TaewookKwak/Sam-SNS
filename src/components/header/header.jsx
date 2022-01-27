@@ -11,9 +11,8 @@ import useUser from '../../hooks/useUser'
 const Header = () => {
   const { firebase } = useContext(FirebaseContext)
   const { user } = useContext(UserContext)
-  const { user: currentUser } = useUser()
+  const { user: currentUser = null } = useUser()
   const history = useHistory()
-
   return (
     <header className={styles.container}>
       <Link to={ROUTES.DASHBOARD}>
@@ -40,7 +39,7 @@ const Header = () => {
           <Link to={`/p/${user.displayName}`}>
             <img
               className={styles.avatar}
-              src={currentUser.imageUrl || '/images/avatars/default.png'}
+              src={currentUser?.imageUrl || '/images/avatars/default.png'}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping
                 currentTarget.src = '/images/avatars/default.png'
@@ -50,14 +49,18 @@ const Header = () => {
           </Link>
         </div>
       ) : (
-        <>
+        <div className={styles.btns}>
           <Link to={ROUTES.LOGIN}>
-            <button type="button">Log In</button>
+            <button className={styles.btnLogin} type="button">
+              Log In
+            </button>
           </Link>
           <Link to={ROUTES.SIGN_UP}>
-            <button type="button">Sign Up</button>
+            <button className={styles.btnSignup} type="button">
+              Sign Up
+            </button>
           </Link>
-        </>
+        </div>
       )}
     </header>
   )

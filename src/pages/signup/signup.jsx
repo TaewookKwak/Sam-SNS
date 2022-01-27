@@ -37,7 +37,7 @@ function SignUp() {
           following: [],
           followers: [],
           dataCreated: Date.now(),
-          ImageUrl: '',
+          imageUrl: '',
         })
 
         history.push(ROUTES.DASHBOARD)
@@ -51,6 +51,7 @@ function SignUp() {
     } else {
       setError('That username is already taken, please try another')
     }
+    window.location.reload()
   }
 
   useEffect(() => {

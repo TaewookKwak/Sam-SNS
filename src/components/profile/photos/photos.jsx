@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import styles from './photos.module.css'
 import * as ROUTES from '../../../constants/routes'
 import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from 'react/cjs/react.development'
+
 import FirebaseContext from '../../../context/firebase'
 import useUser from '../../../hooks/useUser'
 const Photos = ({ photos, profile }) => {
@@ -15,8 +15,6 @@ const Photos = ({ photos, profile }) => {
   const photoRef = useRef()
   const history = useHistory()
   const { user: currentUser } = useUser()
-
-  console.log(profile)
 
   const onClick = () => {
     history.push(ROUTES.WRITE)
