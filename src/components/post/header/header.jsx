@@ -9,7 +9,6 @@ const Header = ({ username }) => {
     const profile = await getUserByUsername(username)
     setProfile(profile[0])
   }, [username])
-  console.log(profile)
   return profile ? (
     <Link to={`/p/${username}`} className={styles.container}>
       <img

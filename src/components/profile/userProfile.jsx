@@ -12,7 +12,6 @@ const UserProfile = ({ user }) => {
     photosCollection: [],
     followerCount: 0,
   }
-
   const [{ profile, photosCollection, followerCount }, dispatch] = useReducer(
     reducer,
     initialState,
@@ -40,7 +39,7 @@ const UserProfile = ({ user }) => {
             followerCount={followerCount}
             setFollowerCount={dispatch}
           />
-          <Photos photos={photosCollection} />
+          <Photos photos={photosCollection} profile={profile} />
         </>
       ) : null}
     </>

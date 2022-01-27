@@ -12,7 +12,6 @@
 }
 
 .profileImage {
-  position: relative;
 }
 
 .btnFollow {
@@ -23,8 +22,8 @@
   padding: 0.5em;
   cursor: pointer;
   position: absolute;
-  top: 2em;
-  right: 2em;
+  top: 40%;
+  left: 7%;
   background-color: #acac9a;
   color: white;
 }
@@ -33,12 +32,25 @@
   width: 5em;
   height: 5em;
   border-radius: 50%;
+  -webkit-box-shadow: 0px 5px 14px -1px #828282;
+  box-shadow: 0px 5px 14px -1px #828282;
 }
 
 .btnEditImage {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 40%;
+  left: 70%;
+  -webkit-box-shadow: 0px 5px 14px -1px #828282;
+  box-shadow: 0px 5px 14px -1px #828282;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: 200ms ease;
+}
+
+.btnEditImage:hover {
+  background-color: black;
+  color: white;
 }
 
 .fullName {
@@ -94,4 +106,9 @@
 
 .btnClose:hover {
   transform: scale(1.2);
+}
+
+.skeleton {
+  width: 8em;
+  height: 8em;
 }

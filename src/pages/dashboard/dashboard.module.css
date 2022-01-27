@@ -1,3 +1,8 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
 .main {
   display: flex;
   height: 100%;

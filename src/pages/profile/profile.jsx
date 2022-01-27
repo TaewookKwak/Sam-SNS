@@ -4,7 +4,7 @@ import * as ROUTES from '../../constants/routes'
 import { useHistory, useParams } from 'react-router-dom'
 import Header from '../../components/header/header'
 import UserProfile from '../../components/profile/userProfile'
-
+import styles from './profile.module.css'
 const Profile = () => {
   let { username } = useParams()
   const [user, setUser] = useState({})
@@ -27,7 +27,7 @@ const Profile = () => {
   }, [username, history])
 
   return userExists ? (
-    <div>
+    <div className={styles.container}>
       <Header />
       <UserProfile user={user} />
     </div>

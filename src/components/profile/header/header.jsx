@@ -47,7 +47,6 @@ const Header = ({
       isFollowedProfile,
     )
   }
-  console.log(profile)
 
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
@@ -62,42 +61,51 @@ const Header = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.profileInfo}>
-        <div className={styles.profileImage}>
-          <img
-            className={styles.image}
-            src={profile.imageUrl || '/images/avatars/default.png'}
-            alt=""
-            onError={({ currentTarget }) => {
-              currentTarget.onerror = null // prevents looping
-              currentTarget.src = '/images/avatars/default.png'
-            }}
-          />
-          {user.userId === profileUserId && (
+      {!profile && !user ? (
+        <Skeleton
+          count={1}
+          baseColor="white"
+          highlightColor="#d3cdcd"
+          className={styles.skeleton}
+        />
+      ) : (
+        <div className={styles.profileInfo}>
+          <div className={styles.profileImage}>
+            <img
+              className={styles.image}
+              src={profile.imageUrl || '/images/avatars/default.png'}
+              alt=""
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null // prevents looping
+                currentTarget.src = '/images/avatars/default.png'
+              }}
+            />
+            {user.userId === profileUserId && (
+              <button
+                className={styles.btnEditImage}
+                onClick={() => setTrigger((prev) => !prev)}
+              >
+                <FontAwesomeIcon icon={faUserEdit} />
+              </button>
+            )}
+          </div>
+          <p className={styles.fullName}>{fullName}</p>
+          <p className={styles.username}>{username}</p>
+          {user.userId !== profileUserId && (
             <button
-              className={styles.btnEditImage}
-              onClick={() => setTrigger((prev) => !prev)}
+              className={styles.btnFollow}
+              onClick={handleFollow}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleFollow()
+                }
+              }}
             >
-              <FontAwesomeIcon icon={faUserEdit} />
+              {isFollowedProfile ? `Unfollow` : `Follow`}
             </button>
           )}
         </div>
-        <p className={styles.fullName}>{fullName}</p>
-        <p className={styles.username}>{username}</p>
-        {user.userId !== profileUserId && (
-          <button
-            className={styles.btnFollow}
-            onClick={handleFollow}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleFollow()
-              }
-            }}
-          >
-            {isFollowedProfile ? `Unfollow` : `Follow`}
-          </button>
-        )}
-      </div>
+      )}
 
       {followerCount !== undefined ||
       following.length !== undefined ||
@@ -108,7 +116,12 @@ const Header = ({
           <p className={styles.followingCount}>{following.length} following</p>
         </div>
       ) : (
-        <Skeleton count={1} width={100} height={50} />
+        <Skeleton
+          count={1}
+          baseColor="white"
+          highlightColor="#d3cdcd"
+          className={styles.skeleton}
+        />
       )}
       <Popup
         trigger={trigger}

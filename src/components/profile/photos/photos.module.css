@@ -16,14 +16,45 @@
   box-shadow: 0px 5px 14px -1px #828282;
   margin: 0.5em;
   transition: 200ms ease-out transform;
+  position: relative;
 }
 
 .list:hover {
   transform: scale(1.2);
 }
 
+.list.delete {
+  display: none;
+}
+
 .photo {
   object-fit: contain;
   height: 100%;
   width: 100%;
+}
+
+.shareAboutYou {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.iconDelete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  padding: 0.2em;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  box-sizing: content-box;
+  text-align: center;
+  line-height: 1em;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+  color: rgb(255, 0, 0);
+}
+
+.iconDelete:hover {
+  transform: scale(1.2);
 }

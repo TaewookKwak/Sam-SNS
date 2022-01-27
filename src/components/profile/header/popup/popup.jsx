@@ -38,12 +38,12 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
     })
     setTrigger((prev) => !prev)
     setImage('')
+    window.location.reload()
   }
   useEffect(async () => {
     const result = await getUserFromFirebaseByUserId(user.uid)
     const docId = result[0].docId
     setUserDocId(docId)
-    console.log(docId)
   }, [user])
 
   return trigger ? (

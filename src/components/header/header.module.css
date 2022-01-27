@@ -16,6 +16,7 @@
 .title {
   margin: 0;
   font-family: 'The Nautigal', cursive;
+  font-size: 2em;
 }
 
 .userBar {
@@ -54,4 +55,21 @@
 
 .avatar:hover {
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 1.2em;
+    height: 100%;
+    line-height: 2em;
+  }
+
+  .btnHome,
+  .btnLogout {
+    font-size: 1.5em;
+  }
+
+  .avatar {
+    font-size: 1em;
+  }
 }

@@ -42,7 +42,7 @@ const Posting = () => {
   }
 
   const onClose = () => {
-    history.push(ROUTES.DASHBOARD)
+    history.go(-1)
     setCaption('')
     setFile('')
   }
@@ -97,7 +97,6 @@ const Posting = () => {
             setTimeout(() => {
               if (Query === captionRef.current.value.toLowerCase()) {
                 setCaption(Query)
-                console.log(Query)
               }
             }, 500)
           }}

@@ -8,7 +8,6 @@ const Sidebar = () => {
     user: { imageUrl = '', docId, fullName, username, userId, following },
   } = useUser()
   // console.log('user in sidebar', fullName, username, userId)
-  console.log(imageUrl)
   return (
     <div className={styles.container}>
       <User imageUrl={imageUrl} fullName={fullName} username={username} />
