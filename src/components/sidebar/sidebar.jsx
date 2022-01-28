@@ -9,20 +9,16 @@ const Sidebar = () => {
   } = useUser()
   // console.log('user in sidebar', fullName, username, userId)
   return (
-    imageUrl !== undefined && (
-      <div className={styles.container}>
-        <User imageUrl={imageUrl} fullName={fullName} username={username} />
-        <Suggestions
-          userId={userId}
-          username={username}
-          following={following}
-          loggedInUserDocId={docId}
-        />
-      </div>
-    )
+    <div className={styles.container}>
+      <User imageUrl={imageUrl} fullName={fullName} username={username} />
+      <Suggestions
+        userId={userId}
+        username={username}
+        following={following}
+        loggedInUserDocId={docId}
+      />
+    </div>
   )
 }
 
 export default Sidebar
-
-Sidebar.whyDidYouRender = true

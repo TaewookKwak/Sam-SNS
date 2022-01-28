@@ -32,7 +32,6 @@ const User = ({ username, fullName, imageUrl }) =>
       </Link>
     </div>
   )
-User.whyDidYouRender = true
 User.propTypes = {
   username: PropTypes.string,
   fullName: PropTypes.string,

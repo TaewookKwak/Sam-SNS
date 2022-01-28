@@ -8,23 +8,23 @@ import {
 const usePhotos = () => {
   const [photos, setPhotos] = useState(null)
   const {
-    user: { uid },
+    user: { uid: userId = '' },
   } = useContext(UserContext)
 
   useEffect(() => {
-    if (uid) {
+    if (userId) {
       async function getTimelinePhotos() {
-        const [{ following = '' }] = await getUserFromFirebaseByUserId(uid)
+        const [{ following = '' }] = await getUserFromFirebaseByUserId(userId)
         let followedUserPhotos = []
         if (following.length > 0) {
-          followedUserPhotos = await getPhotosFromFirebase(uid, following)
+          followedUserPhotos = await getPhotosFromFirebase(userId, following)
         }
         followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated)
         setPhotos(followedUserPhotos)
       }
       getTimelinePhotos()
     }
-  }, [uid])
+  }, [userId])
   return photos
 }
 
