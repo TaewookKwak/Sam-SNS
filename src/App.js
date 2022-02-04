@@ -11,6 +11,7 @@ import Login from './pages/login/login'
 import SignUp from './pages/signup/signup'
 import Profile from './pages/profile/profile'
 import Posting from './pages/posting/posting'
+import Story from './pages/story/story'
 
 const login = lazy(() => import('./pages/login/login'))
 const signup = lazy(() => import('./pages/signup/signup'))
@@ -45,6 +46,9 @@ function App() {
             </IsUserLoggedIn>
             <ProtectedRoute user={user} path={ROUTES.PROFILE} exact>
               <Profile />
+            </ProtectedRoute>
+            <ProtectedRoute user={user} path={ROUTES.STORY} exact>
+              <Story />
             </ProtectedRoute>
 
             <Route component={notFound} />

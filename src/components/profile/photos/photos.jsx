@@ -30,6 +30,14 @@ const Photos = ({ photos, profile }) => {
     setPhoto(false)
     e.target.parentElement.classList.toggle('delete')
   }
+
+  const onStory = (e) => {
+    history.push({
+      pathname: ROUTES.STORY,
+      state: { photoid: e.target.dataset.photoid },
+    })
+  }
+
   return !photos ? (
     <Skeleton count={12} width={100} height={200} />
   ) : (
@@ -37,8 +45,17 @@ const Photos = ({ photos, profile }) => {
       {photos.map((item) => {
         return photo ? (
           <>
-            <li className={styles.list} key={`${item.docId}-${item.userId}`}>
-              <img className={styles.photo} src={item.imageSrc} alt="" />
+            <li
+              className={styles.list}
+              key={`${item.docId}-${item.userId}-${new Date()}`}
+            >
+              <img
+                className={styles.photo}
+                src={item.imageSrc}
+                alt="story"
+                onClick={onStory}
+                data-photoid={item.photoId}
+              />
               {currentUser.userId === item.userId && (
                 <div
                   ref={photoRef}
@@ -46,7 +63,7 @@ const Photos = ({ photos, profile }) => {
                   onClick={onDelete}
                   className={styles.iconDelete}
                 >
-                  ❌
+                  x
                 </div>
               )}
             </li>

@@ -57,19 +57,32 @@ export async function getAllUsersFromFirebase(userId, following) {
 }
 
 export async function getPhotosFromFirebase(userId, following) {
-  const result = await firebase
+  const resultForFollowing = await firebase
     .firestore()
     .collection('photos')
     .where('userId', 'in', following)
     .get()
 
-  const userFollowedPhotos = result.docs.map((photo) => ({
+  const resultForUser = await firebase
+    .firestore()
+    .collection('photos')
+    .where('userId', '==', userId)
+    .get()
+
+  const userFollowedPhotos = resultForFollowing.docs.map((photo) => ({
     ...photo.data(),
     docId: photo.id,
   }))
 
+  const userPhotos = resultForUser.docs.map((photo) => ({
+    ...photo.data(),
+    docId: photo.id,
+  }))
+
+  const allPhotos = [...userFollowedPhotos, ...userPhotos]
+
   const photosWithUserDetail = await Promise.all(
-    userFollowedPhotos.map(async (photo) => {
+    allPhotos.map(async (photo) => {
       let userLikedPhoto = false
       if (photo.likes.includes(userId)) {
         userLikedPhoto = true
@@ -95,6 +108,37 @@ export async function getAllPhotosByUserIdFromFirebase(userId) {
     })
     // console.log('result in photos', photos)
     return photos
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function getPhotoByPhotoIdFromFirebase(photoId) {
+  try {
+    const result = await firebase
+      .firestore()
+      .collection('photos')
+      .where('photoId', '==', photoId)
+      .get()
+
+    const photo = result.docs.map((item) => {
+      return { ...item.data(), docId: item.id }
+    })
+
+    const photosWithUserDetail = await Promise.all(
+      photo.map(async (list) => {
+        let userLikedPhoto = false
+        if (list.likes.includes(photo[0].userId)) {
+          userLikedPhoto = true
+        }
+
+        const user = await getUserFromFirebaseByUserId(photo[0].userId)
+        const { username } = user[0]
+        return { username, ...photo[0], userLikedPhoto }
+      }),
+    )
+
+    return photosWithUserDetail[0]
   } catch (err) {
     console.log(err)
   }
