@@ -49,6 +49,7 @@
   bottom: 2em;
   left: 2em;
   transition: 200ms ease-in-out;
+  box-sizing: content-box;
 }
 
 .icon:hover {

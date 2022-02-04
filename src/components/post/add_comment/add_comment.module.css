@@ -3,14 +3,14 @@
   display: flex;
 }
 .inputComment {
-  flex-basis: 80%;
+  flex-basis: 90%;
   outline: none;
   border: none;
   border-bottom: 1px solid gray;
 }
 .btnPost {
   margin: 0 0.5em;
-  flex-basis: 20%;
+  flex-basis: 10%;
   border: none;
   border-radius: 15%;
   background-color: transparent;

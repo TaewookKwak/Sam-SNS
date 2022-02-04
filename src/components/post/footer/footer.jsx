@@ -1,11 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './footer.module.css'
-const Footer = ({ username, caption }) => {
+import { formatDistance } from 'date-fns'
+const Footer = ({ username, caption, posted }) => {
   return (
     <div className={styles.container}>
       <span className={styles.username}>{username}</span>
       <span className={styles.caption}>{caption}</span>
+      <p className={styles.date}>
+        {formatDistance(posted, new Date(), { addSuffix: true })}
+      </p>
     </div>
   )
 }

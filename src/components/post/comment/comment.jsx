@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { formatDistance } from 'date-fns'
 import { Link } from 'react-router-dom'
 import styles from './comment.module.css'
 import AddComment from '../add_comment/add_comment'
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
-const Comment = ({ docId, comments: allComments, posted, commentInput }) => {
+const Comment = ({ docId, comments: allComments, commentInput }) => {
   const [comments, setComments] = useState(allComments)
   const [showingView, setShowingView] = useState(false)
   return (
@@ -45,9 +43,7 @@ const Comment = ({ docId, comments: allComments, posted, commentInput }) => {
                 </p>
               )
             })}
-        <p className={styles.date}>
-          {formatDistance(posted, new Date(), { addSuffix: true })}
-        </p>
+
         <AddComment
           docId={docId}
           comments={comments}
@@ -62,7 +58,6 @@ const Comment = ({ docId, comments: allComments, posted, commentInput }) => {
 Comment.propTypes = {
   docId: PropTypes.string.isRequired,
   allComments: PropTypes.array,
-  posted: PropTypes.number.isRequired,
   commentInput: PropTypes.object.isRequired,
 }
 

@@ -22,11 +22,14 @@ const Post = ({ content }) => {
           likedPhoto={content.userLikedPhoto}
           handleFocus={handleFocus}
         />
-        <Footer username={content.username} caption={content.caption} />
+        <Footer
+          username={content.username}
+          caption={content.caption}
+          posted={content.dateCreated}
+        />
         <Comment
           docId={content.docId}
           comments={content.comments}
-          posted={content.dateCreated}
           commentInput={commentInput}
         />
       </div>
