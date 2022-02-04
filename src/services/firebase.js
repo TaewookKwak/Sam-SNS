@@ -113,7 +113,7 @@ export async function getAllPhotosByUserIdFromFirebase(userId) {
   }
 }
 
-export async function getPhotoByPhotoIdFromFirebase(photoId) {
+export async function getPhotoByPhotoIdFromFirebase(photoId, userId) {
   try {
     const result = await firebase
       .firestore()
@@ -128,7 +128,7 @@ export async function getPhotoByPhotoIdFromFirebase(photoId) {
     const photosWithUserDetail = await Promise.all(
       photo.map(async (list) => {
         let userLikedPhoto = false
-        if (list.likes.includes(photo[0].userId)) {
+        if (list.likes.includes(userId)) {
           userLikedPhoto = true
         }
 

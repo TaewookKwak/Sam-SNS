@@ -14,7 +14,11 @@ const Post = ({ content }) => {
   return (
     <div className={styles.container}>
       <Header username={content.username} />
-      <Image src={content.imageSrc} caption={content.caption} />
+      <Image
+        src={content.imageSrc}
+        caption={content.caption}
+        photoId={content.photoId}
+      />
       <div className={styles.containerOfRest}>
         <Action
           docId={content.docId}
