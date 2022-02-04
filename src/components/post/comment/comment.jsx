@@ -1,12 +1,40 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styles from './comment.module.css'
 import AddComment from '../add_comment/add_comment'
+import FirebaseContext from '../../../context/firebase'
 
-const Comment = ({ docId, comments: allComments, commentInput }) => {
+const Comment = ({
+  docId,
+  comments: allComments,
+  commentInput,
+  username,
+  setUpdate,
+}) => {
   const [comments, setComments] = useState(allComments)
   const [showingView, setShowingView] = useState(false)
+  const { firebase, FieldValue } = useContext(FirebaseContext)
+  const onDelete = (e) => {
+    setComments((prev) =>
+      prev.filter((item) => {
+        return (
+          item.comment !== e.target.dataset.comment ||
+          item.displayName !== e.target.dataset.username
+        )
+      }),
+    )
+    return firebase
+      .firestore()
+      .collection('photos')
+      .doc(docId)
+      .update({
+        comments: FieldValue.arrayRemove({
+          comment: e.target.dataset.comment,
+          displayName: e.target.dataset.username,
+        }),
+      })
+  }
   return (
     <>
       <div className={styles.container}>
@@ -28,6 +56,16 @@ const Comment = ({ docId, comments: allComments, commentInput }) => {
                     </span>
                   </Link>
                   <span className={styles.comment}>{item.comment}</span>
+                  {username === item.displayName ? (
+                    <span
+                      className={styles.btnDelete}
+                      onClick={onDelete}
+                      data-username={username}
+                      data-comment={item.comment}
+                    >
+                      x
+                    </span>
+                  ) : null}
                 </p>
               )
             })
@@ -40,6 +78,9 @@ const Comment = ({ docId, comments: allComments, commentInput }) => {
                     </span>
                   </Link>
                   <span className={styles.comment}>{item.comment}</span>
+                  <span className={styles.btnDelete} onClick={onDelete}>
+                    x
+                  </span>
                 </p>
               )
             })}

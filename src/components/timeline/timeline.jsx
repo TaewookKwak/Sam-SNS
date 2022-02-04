@@ -8,7 +8,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
 const Timeline = () => {
   const photos = usePhotos()
-
+  const [update, setUpdate] = useState(false)
   const handleRefresh = () => {
     window.location.reload()
   }
@@ -25,7 +25,7 @@ const Timeline = () => {
         <FontAwesomeIcon icon={faSyncAlt}></FontAwesomeIcon>
       </div>
       {photos.map((photo) => {
-        return <Post key={photo.docId} content={photo} />
+        return <Post key={photo.docId} content={photo} setUpdate={setUpdate} />
       })}
     </div>
   ) : (
