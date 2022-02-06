@@ -1,6 +1,7 @@
 .form {
   text-align: center;
   display: flex;
+  margin: 1em 0em;
 }
 .inputComment {
   flex-basis: 90%;
@@ -12,7 +13,7 @@
   margin: 0 0.5em;
   flex-basis: 10%;
   border: none;
-  border-radius: 15%;
+  border-radius: 1em;
   background-color: transparent;
   -webkit-box-shadow: 0px 5px 14px -1px #828282;
   box-shadow: 0px 5px 14px -1px #828282;

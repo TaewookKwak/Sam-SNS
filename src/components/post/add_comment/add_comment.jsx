@@ -38,6 +38,7 @@ const AddComment = ({ docId, comments, setComments, commentInput }) => {
           name="add-comment"
           value={comment}
           onChange={({ target }) => setComment(target.value)}
+          placeholder="Add comment here..."
         />
         <button
           className={styles.btnPost}

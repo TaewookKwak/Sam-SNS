@@ -38,6 +38,7 @@ const Comment = ({
   return (
     <>
       <div className={styles.container}>
+        <p>댓글 {comments.length}</p>
         {comments.length >= 3 && (
           <p
             onClick={() => setShowingView((prev) => !prev)}
@@ -78,9 +79,16 @@ const Comment = ({
                     </span>
                   </Link>
                   <span className={styles.comment}>{item.comment}</span>
-                  <span className={styles.btnDelete} onClick={onDelete}>
-                    x
-                  </span>
+                  {username === item.displayName ? (
+                    <span
+                      className={styles.btnDelete}
+                      onClick={onDelete}
+                      data-username={username}
+                      data-comment={item.comment}
+                    >
+                      x
+                    </span>
+                  ) : null}
                 </p>
               )
             })}
