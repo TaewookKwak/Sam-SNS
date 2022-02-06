@@ -16,7 +16,7 @@ const Post = ({ content, setUpdate }) => {
 
   return user?.username ? (
     <div className={styles.container}>
-      <Header username={content.username} />
+      <Header posted={content.dateCreated} username={content.username} />
       <Image
         src={content.imageSrc}
         caption={content.caption}

@@ -1,6 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
 .container {
   display: flex;
-  padding: 1em;
 }
 
 .avatar {
@@ -11,5 +17,9 @@
 }
 
 .username {
+  font-weight: 800;
+}
+
+.posted {
   font-weight: 800;
 }
