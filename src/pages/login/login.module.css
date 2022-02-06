@@ -91,6 +91,10 @@
   text-align: center;
 }
 
+.btnSignUp:hover {
+  border-bottom: 1px solid rgb(97, 97, 226);
+}
+
 .btnSignUp {
   text-decoration: none;
 }

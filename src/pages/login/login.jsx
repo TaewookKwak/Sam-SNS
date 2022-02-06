@@ -35,9 +35,9 @@ function Login() {
           <h2 className={styles.h2}>
             Sign up to see photos and videos from your friends.
           </h2>
-          <button className={styles.btnLogInWithGoogle}>
+          {/* <button className={styles.btnLogInWithGoogle}>
             Log in with Google
-          </button>
+          </button> */}
           <div className={styles.lineUnit}>
             <hr className={styles.line} />
             <span className={styles.h2}>OR</span>

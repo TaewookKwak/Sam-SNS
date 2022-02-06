@@ -6,7 +6,7 @@ import 'firebase/compat/storage'
 // import { seedDatabase } from '../seed'
 
 const config = {
-  apiKey: 'AIzaSyDo6jlMCvBwIJS95qzSXYIb8WOT8BztKLQ',
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'sam-sns.firebaseapp.com',
   projectId: 'sam-sns',
   storageBucket: 'sam-sns.appspot.com',

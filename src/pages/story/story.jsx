@@ -36,7 +36,7 @@ function Story(props) {
 
   return photo ? (
     <div className={styles.container}>
-      <Header username={photo.username} />
+      <Header username={photo.username} posted={photo.dateCreated} />
       <Image src={photo.imageSrc} caption={photo.caption} />
       <div className={styles.containerOfRest}>
         <Action
