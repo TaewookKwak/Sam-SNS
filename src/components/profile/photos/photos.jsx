@@ -4,8 +4,6 @@ import React, { useContext, useRef, useState } from 'react'
 import styles from './photos.module.css'
 import * as ROUTES from '../../../constants/routes'
 import { useHistory } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 import FirebaseContext from '../../../context/firebase'
 import useUser from '../../../hooks/useUser'
@@ -44,30 +42,28 @@ const Photos = ({ photos, profile }) => {
     <div className={styles.container}>
       {photos.map((item) => {
         return photo ? (
-          <>
-            <li
-              className={styles.list}
-              key={`${item.docId}-${item.userId}-${new Date()}`}
-            >
-              <img
-                className={styles.photo}
-                src={item.imageSrc}
-                alt="story"
-                onClick={onStory}
-                data-photoid={item.photoId}
-              />
-              {currentUser.userId === item.userId && (
-                <div
-                  ref={photoRef}
-                  data-name={item.docId}
-                  onClick={onDelete}
-                  className={styles.iconDelete}
-                >
-                  x
-                </div>
-              )}
-            </li>
-          </>
+          <li
+            className={styles.list}
+            key={`${item.docId}-${item.userId}-${new Date()}`}
+          >
+            <img
+              className={styles.photo}
+              src={item.imageSrc}
+              alt="story image"
+              onClick={onStory}
+              data-photoid={item.photoId}
+            />
+            {currentUser.userId === item.userId && (
+              <div
+                ref={photoRef}
+                data-name={item.docId}
+                onClick={onDelete}
+                className={styles.iconDelete}
+              >
+                x
+              </div>
+            )}
+          </li>
         ) : null
       })}
 

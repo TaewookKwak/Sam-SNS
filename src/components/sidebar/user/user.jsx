@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styles from './user.module.css'
@@ -19,7 +19,7 @@ const User = ({ username, fullName, imageUrl }) =>
         <img
           className={styles.avatar}
           src={imageUrl || '/images/avatars/default.png'}
-          alt=""
+          alt="user image"
           onError={({ currentTarget }) => {
             currentTarget.onerror = null // prevents looping
             currentTarget.src = '/images/avatars/default.png'

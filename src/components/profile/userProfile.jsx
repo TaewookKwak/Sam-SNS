@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useReducer } from 'react'
-import Skeleton from 'react-loading-skeleton'
-import { getPhotosByUsername, getUserByUsername } from '../../services/firebase'
+import { getPhotosByUsername } from '../../services/firebase'
 import Header from './header/header'
 import Photos from './photos/photos'
 
@@ -27,7 +26,7 @@ const UserProfile = ({ user }) => {
       })
     }
     getProfileInfoAndPhotos()
-  }, [user.username])
+  }, [user])
 
   return (
     <>

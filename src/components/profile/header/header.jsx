@@ -5,7 +5,6 @@ import useUser from '../../../hooks/useUser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import {
-  getAllPhotosByUserIdFromFirebase,
   isUserFollowingProfile,
   updateFollowingProfileFollowedUserFromFirebase,
   updateLoggedInUserFollowingFromFirebase,
@@ -74,7 +73,7 @@ const Header = ({
             <img
               className={styles.image}
               src={profile.imageUrl || '/images/avatars/default.png'}
-              alt=""
+              alt="profile image"
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping
                 currentTarget.src = '/images/avatars/default.png'
@@ -130,7 +129,9 @@ const Header = ({
         image={image}
       >
         <div className={styles.previewContainer}>
-          {image && <img className={styles.preview} src={image} alt="" />}
+          {image && (
+            <img className={styles.preview} src={image} alt="preview image" />
+          )}
         </div>
         <button
           className={styles.btnClose}

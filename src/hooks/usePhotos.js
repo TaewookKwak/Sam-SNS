@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import UserContext from '../context/user'
 import {
   getPhotosFromFirebase,
@@ -8,20 +8,20 @@ import {
 const usePhotos = () => {
   const [photos, setPhotos] = useState(null)
   const {
-    user: { uid: userId = '' },
+    user: { uid: userId },
   } = useContext(UserContext)
-
   useEffect(() => {
-    if (userId) {
-      async function getTimelinePhotos() {
-        const [{ following = '' }] = await getUserFromFirebaseByUserId(userId)
-        let followedUserPhotos = []
-        if (following.length > 0) {
-          followedUserPhotos = await getPhotosFromFirebase(userId, following)
-        }
-        followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated)
-        setPhotos(followedUserPhotos)
+    async function getTimelinePhotos() {
+      const [{ following }] = await getUserFromFirebaseByUserId(userId)
+      console.log(following)
+      let followedUserPhotos = []
+      if (following.length > 0) {
+        followedUserPhotos = await getPhotosFromFirebase(userId, following)
       }
+      followedUserPhotos.sort((a, b) => b.dateCreated - a.dateCreated)
+      setPhotos(followedUserPhotos)
+    }
+    if (userId) {
       getTimelinePhotos()
     }
   }, [userId])

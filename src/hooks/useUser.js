@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import UserContext from '../context/user'
-import React from 'react'
 import { getUserFromFirebaseByUserId } from '../services/firebase'
 
 function useUser(props) {

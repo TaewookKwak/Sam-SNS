@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Write from '../../components/footer/write'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'

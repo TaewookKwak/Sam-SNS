@@ -1,5 +1,5 @@
 import FirebaseContext from '../context/firebase'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const useAuthListener = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')))

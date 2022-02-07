@@ -44,6 +44,7 @@ const Popup = ({ trigger, setTrigger, setImage, children, image }) => {
     const result = await getUserFromFirebaseByUserId(user.uid)
     const docId = result[0].docId
     setUserDocId(docId)
+    return () => setUserDocId('')
   }, [user])
 
   return trigger ? (

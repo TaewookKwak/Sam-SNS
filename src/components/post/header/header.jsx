@@ -9,6 +9,7 @@ const Header = ({ username, posted }) => {
   useEffect(async () => {
     const profile = await getUserByUsername(username)
     setProfile(profile[0])
+    return () => setProfile(null)
   }, [username])
   return profile ? (
     <div className={styles.header}>
